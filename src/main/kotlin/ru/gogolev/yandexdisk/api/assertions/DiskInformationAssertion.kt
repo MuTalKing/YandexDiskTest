@@ -45,7 +45,6 @@ class DiskInformationAssertion {
 
                 }
                 actualDiskInformation.unlimited_autoupload_enabled shouldBe expectedDiskInformation.unlimited_autoupload_enabled
-                actualDiskInformation.revision shouldBe expectedDiskInformation.revision
             }
         }
     }

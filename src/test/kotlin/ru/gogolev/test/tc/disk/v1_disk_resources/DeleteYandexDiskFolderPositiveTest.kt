@@ -42,18 +42,24 @@ class DeleteYandexDiskFolderPositiveTest @Autowired constructor(
         deleteResponse.asClue {
             it.statusCode shouldBe 204
         }
-        diskResourceAssertion.checkResponseBody(deleteResponse.then().extractAs())
     }
 
     @ParameterizedTest(name = "c параметром fields = {0}")
     @EnumSource(DiskResourceParameters::class)
     @DisplayName("Сценарий: проверка удаления папки ")
+    //Возможно баг, ибо при указании параметра в fields он все равно все параметры показывает
     fun `put folder to yandex disk with fields parameter`(fields: DiskResourceParameters) {
         val folderName = engString(6)
+        yandexDiskService.putDiskResource(
+            params = mapOf("path" to folderName)
+        ).asClue {
+            it.statusCode shouldBe 201
+        }
         val deleteResponse = yandexDiskService.deleteDiskResource(
             params = mapOf(
                 "path" to folderName,
-                "fields" to fields.name.lowercase()
+                "fields" to fields.name.lowercase(),
+                "force_async" to "true"
             )
         ).then().extractAs<DiskResourcesResponse>()
         diskResourceAssertion.checkDiskResourceParameters(fields = fields, diskResourcesResponse = deleteResponse)

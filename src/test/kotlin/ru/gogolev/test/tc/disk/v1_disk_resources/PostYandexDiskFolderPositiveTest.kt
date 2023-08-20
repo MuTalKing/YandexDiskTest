@@ -51,6 +51,12 @@ class PostYandexDiskFolderPositiveTest @Autowired constructor(
         if (forceAsync) {
             diskResourceAssertion.checkResponseBody(postResponse.then().extractAs())
         }
+        yandexDiskService.deleteDiskResource(params = mapOf("path" to folderName)).asClue {
+            it.statusCode shouldBe 204
+        }
+        yandexDiskService.deleteDiskResource(params = mapOf("path" to secondFolderName)).asClue {
+            it.statusCode shouldBe 204
+        }
     }
 
     @ParameterizedTest(name = "c параметром fields = {0}")
@@ -70,6 +76,12 @@ class PostYandexDiskFolderPositiveTest @Autowired constructor(
             )
         ).then().extractAs<DiskResourcesResponse>()
         diskResourceAssertion.checkDiskResourceParameters(fields = fields, diskResourcesResponse = postResponse)
+        yandexDiskService.deleteDiskResource(params = mapOf("path" to folderName)).asClue {
+            it.statusCode shouldBe 204
+        }
+        yandexDiskService.deleteDiskResource(params = mapOf("path" to secondFolderName)).asClue {
+            it.statusCode shouldBe 204
+        }
     }
 
     companion object {
