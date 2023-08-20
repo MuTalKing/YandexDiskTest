@@ -3,6 +3,7 @@ package ru.gogolev.test.config
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import ru.gogolev.yandexdisk.api.assertions.DiskInformationAssertion
+import ru.gogolev.yandexdisk.api.assertions.DiskResourceAssertion
 import ru.gogolev.yandexdisk.api.assertions.ErrorAssertion
 import ru.gogolev.yandexdisk.api.config.RestAssuredConfiguration
 import ru.gogolev.yandexdisk.api.generators.DiskInformationGenerator
@@ -31,4 +32,7 @@ class TestConfig {
 
     @Bean
     fun errorAssertion() = ErrorAssertion()
+
+    @Bean
+    fun diskResourceAssertion() = DiskResourceAssertion()
 }

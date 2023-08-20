@@ -7,6 +7,7 @@ import io.restassured.response.ValidatableResponse
 import ru.gogolev.yandexdisk.api.config.RestAssuredConfiguration
 import ru.gogolev.yandexdisk.api.utils.V1_DISK
 import ru.gogolev.yandexdisk.api.utils.V1_DISK_RESOURCES
+import ru.gogolev.yandexdisk.api.utils.V1_DISK_RESOURCES_COPY
 
 class YandexDiskService(
     private val yandexDiskRestAssuredConfiguration: RestAssuredConfiguration
@@ -44,5 +45,13 @@ class YandexDiskService(
         .queryParams(params)
         .`when`()
         .delete(V1_DISK_RESOURCES)
+
+    @Step("Отправление POST запроса на '/v1/disk/resources/copy'")
+    fun postDiskResource(params: Map<String, String>): Response = RestAssured
+        .given()
+        .spec(yandexDiskRestAssuredConfiguration.requestSpec)
+        .queryParams(params)
+        .`when`()
+        .post(V1_DISK_RESOURCES_COPY)
 
 }

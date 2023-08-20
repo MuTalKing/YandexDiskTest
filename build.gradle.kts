@@ -22,36 +22,51 @@ val springVersion: String by project
 val kotestVersion: String by project
 
 dependencies {
-
+    //////////////////////////////////////////////////
+    //                  JUnit5                      //
+    //////////////////////////////////////////////////
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 
+    //////////////////////////////////////////////////
+    //                  RestAssured                 //
+    //////////////////////////////////////////////////
     implementation("io.rest-assured:rest-assured:$restAssuredVersion")
     implementation("io.rest-assured:json-path:$restAssuredVersion")
     testImplementation("io.rest-assured:kotlin-extensions:$restAssuredVersion")
 
+    //////////////////////////////////////////////////
+    //                  Jackson                     //
+    //////////////////////////////////////////////////
     implementation("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
     implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion")
 
+    //////////////////////////////////////////////////
+    //                  Spring                      //
+    //////////////////////////////////////////////////
     implementation("org.springframework.boot:spring-boot-starter:$springVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springVersion")
 
+    //////////////////////////////////////////////////
+    //                  Kotest                      //
+    //////////////////////////////////////////////////
     implementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
     implementation("io.kotest:kotest-property:$kotestVersion")
 
+    //////////////////////////////////////////////////
+    //                  Allure                      //
+    //////////////////////////////////////////////////
     implementation("io.qameta.allure:allure-rest-assured:$allureVersion")
     testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
 
+    //////////////////////////////////////////////////
+    //                  External Libs               //
+    //////////////////////////////////////////////////
     runtimeOnly("org.aspectj:aspectjweaver:1.9.19")
-
-    testImplementation("org.slf4j:slf4j-simple:2.0.0")
-    implementation("com.typesafe:config:1.4.2")
-
-    implementation("org.assertj:assertj-core:3.23.1")
 }
 
 allure {

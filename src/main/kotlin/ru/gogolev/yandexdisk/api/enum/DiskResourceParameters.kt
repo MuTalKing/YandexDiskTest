@@ -1,6 +1,6 @@
 package ru.gogolev.yandexdisk.api.enum
 
-enum class PutResponseParameters {
+enum class DiskResourceParameters {
     HREF,
     METHOD,
     TEMPLATED
